@@ -17,6 +17,7 @@ public class GameState {
         string id,
         string? playerToMove,
         string[][] board,
+        List<GamePlayerInfo> players,
         GameStatus status,
         GameResult? result,
         string? winner = null
@@ -26,6 +27,7 @@ public class GameState {
         Board = board;
         Status = status;
         Result = result;
+        Players = players;
         Winner = winner;
     }
 
@@ -37,8 +39,16 @@ public class GameState {
             new string[] { "", "", "" },
             new string[] { "", "", "" },
         },
+        players: new(),
         status: GameStatus.Waiting,
         result: null,
         winner: null);
+
+    public void SetWinner(string playerId) {
+        Result = GameResult.Win;
+        Status = GameStatus.Finished;
+        Winner = playerId;
+        PlayerToMove = null;
+    }
 
 }

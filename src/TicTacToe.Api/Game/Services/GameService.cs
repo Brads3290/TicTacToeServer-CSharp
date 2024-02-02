@@ -1,4 +1,5 @@
 using ErrorOr;
+using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using TicTacToe.Api.Common;
 using TicTacToe.Api.Game.Interfaces;
 using TicTacToe.Api.Game.Models;
@@ -62,11 +63,26 @@ public class GameService : IGameService {
             return GameServiceErrors.GameNotFound;
         }
         
-        // How do implement resignation
+        var result = ResignPlayerFromGame(player, game);
+        if (result.IsError) {
+            return result.Errors;
+        }
+
+        await _gameRepository.SaveGameAsync(game);
+
+        return game;
     }
 
     private static ErrorOr<Success> ResignPlayerFromGame(Player player, GameState game) {
-        
+        var gamePlayer = game.Players.FirstOrDefault(x => x.PlayerId == player.Id);
+        if (gamePlayer is null) {
+            return GameServiceErrors.PlayerNotInGame;
+        }
+
+        var otherPlayer = game.Players.Single(x => x.PlayerId != player.Id);
+        game.SetWinner(otherPlayer.PlayerId);
+
+        return new Success();
     }
 
 }
