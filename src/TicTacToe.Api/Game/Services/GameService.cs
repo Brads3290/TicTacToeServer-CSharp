@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using TicTacToe.Api.Common;
@@ -40,7 +41,23 @@ public class GameService : IGameService {
     }
 
     public async Task<ErrorOr<GameState>> MakeMoveAsync(string gameId, string playerId, int row, int col) {
-        throw new NotImplementedException();
+        var player = await _playerRepository.GetPlayerAsync(playerId);
+        if (player is null) {
+            return GameServiceErrors.PlayerNotFound;
+        }
+
+        var game = await _gameRepository.GetGameAsync(gameId);
+        if (game is null) {
+            return GameServiceErrors.GameNotFound;
+        }
+        
+        var result = MakeMoveForPlayer(player, game, row, col);
+        if (result.IsError) {
+            return result.Errors;
+        }
+
+        await _gameRepository.SaveGameAsync(game);
+        return game;
     }
 
     public async Task<ErrorOr<GameState>> GetGameStateAsync(string id) {
@@ -69,8 +86,37 @@ public class GameService : IGameService {
         }
 
         await _gameRepository.SaveGameAsync(game);
+        return game;
+    }
+
+    public async Task<ErrorOr<GameState>> JoinGameAsync(string gameId, string playerId) {
+        var player = await _playerRepository.GetPlayerAsync(playerId);
+        if (player is null) {
+            return GameServiceErrors.PlayerNotFound;
+        }
+
+        var game = await _gameRepository.GetGameAsync(gameId);
+        if (game is null) {
+            return GameServiceErrors.GameNotFound;
+        }
+
+        var result = game.JoinGame(player);
+        if (result.IsError) {
+            return result.Errors;
+        }
 
         return game;
+    }
+
+    private static ErrorOr<Success> MakeMoveForPlayer(Player player, GameState game, int row, int col) {
+        var result = game.PlayerMove(row, col, player.Id);
+        if (result.IsError) {
+            return result.Errors;
+        }
+        
+        // Check for win or draw
+        game.UpdateState();
+        return new Success();
     }
 
     private static ErrorOr<Success> ResignPlayerFromGame(Player player, GameState game) {

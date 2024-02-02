@@ -29,6 +29,10 @@ public static class GameServiceErrors {
         code: "GameService.PlayerNotInGame",
         description: "This player is not in this game");
 
+    public static Error PlayerAlreadyInGame = Error.Failure(
+        code: "GameService.PlayerAlreadyInGame",
+        description: "This player is already in this game");
+
     public static Error GameFull = Error.Failure(
         code: "GameService.GameFull",
         description: "This game already has two players");
