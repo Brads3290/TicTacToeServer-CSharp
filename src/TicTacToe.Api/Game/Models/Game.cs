@@ -7,6 +7,7 @@ namespace TicTacToe.Api.Game.Models;
 
 public class Game {
 
+    private static readonly Random Rand = new();
     public const string SymbolX = "X";
     public const string SymbolO = "O";
     
@@ -70,6 +71,13 @@ public class Game {
         
         var gamePlayer = GamePlayerInfo.From(player, symbolToUse);
         Players.Add(gamePlayer);
+
+        if (Players.Count == 2) {
+            var toMove = Rand.Next(0, 2);
+            Status = GameStatus.InProgress;
+            PlayerToMove = Players[toMove].PlayerId;
+        }
+
         return new Success();
     }
     
