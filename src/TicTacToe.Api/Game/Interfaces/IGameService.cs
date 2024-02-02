@@ -17,7 +17,29 @@ public static class GameServiceErrors {
     public static Error GameNotFound = Error.NotFound(
         code: "GameService.NotFound",
         description: "Game not found");
-    
-    
+
+    public static Error PlayerNotFound = Error.NotFound(
+        code: "GameService.PlayerNotFound",
+        description: "Player not found");
+
+    public static Error PlayerNotInGame = Error.NotFound(
+        code: "GameService.PlayerNotInGame",
+        description: "This player is not in this game");
+
+    public static Error GameFull = Error.NotFound(
+        code: "GameService.GameFull",
+        description: "This game already has two players");
+
+    public static Error GameFinished = Error.NotFound(
+        code: "GameService.GameFinished",
+        description: "This game is already finished");
+
+    public static Error GameNotJoinable = Error.NotFound(
+        code: "GameService.GameNotJoinable",
+        description: "This game is not in a joinable state");
+
+    public static Error InvalidMove = Error.NotFound(
+        code: "GameService.InvalidMove",
+        description: "The requested move is invalid");
 
 } 
