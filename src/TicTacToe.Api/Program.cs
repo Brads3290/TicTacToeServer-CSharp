@@ -1,5 +1,6 @@
 using TicTacToe.Api;
 using TicTacToe.Api.Game.Interfaces;
+using TicTacToe.Api.Game.Repositories;
 using TicTacToe.Api.Game.Services;
 using TicTacToe.Api.Players.Interfaces;
 using TicTacToe.Api.Players.Repositories;
@@ -15,8 +16,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
-builder.Services.AddSingleton<IPlayerRepository, InMemoryPlayerRepository>();
-builder.Services.AddSingleton<IGameRepository, InMemoryGameRepository>();
+builder.Services.AddSingleton<IPlayerRepository, JsonPlayerRepository>();
+builder.Services.AddSingleton<IGameRepository, JsonGameRepository>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
