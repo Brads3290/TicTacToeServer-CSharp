@@ -6,10 +6,11 @@ namespace TicTacToe.Api.Game.Interfaces;
 
 public interface IGameService {
 
-    Task<ErrorOr<GameState>> StartGameAsync(Player player);
+    Task<ErrorOr<GameState>> StartGameAsync(string playerId);
     Task<ErrorOr<List<GameState>>> ListOpenGamesAsync();
     Task<ErrorOr<GameState>> GetGameStateAsync(string id);
     Task<ErrorOr<GameState>> ResignGameAsync(string gameId, string playerId);
+    Task<ErrorOr<GameState>> JoinGameAsync();
 
 }
 
