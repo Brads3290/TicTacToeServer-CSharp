@@ -6,7 +6,7 @@ using ErrorOr;
 namespace TicTacToe.Api.Game;
 
 [ApiController]
-[Route("game")]
+[Route("games")]
 public class GameController : ControllerBase {
 
     private readonly IGameService _gameService;
@@ -35,11 +35,13 @@ public class GameController : ControllerBase {
         var result = await _gameService.StartGameAsync();
         if (result.IsError)
         {
-            // return // TODO: Return error response
+            return ErrorResult(result.FirstError);
         }
 
         return Ok(result.Value);
 
     }
+
+
 
 }
