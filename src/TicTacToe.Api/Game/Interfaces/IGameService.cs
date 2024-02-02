@@ -9,7 +9,7 @@ public interface IGameService {
     Task<ErrorOr<GameState>> StartGameAsync(string playerId);
     Task<ErrorOr<List<GameState>>> ListOpenGamesAsync();
     Task<ErrorOr<GameState>> GetGameStateAsync(string id);
-    Task<ErrorOr<Success>> MakeMoveAsync(string gameId, string playerId, int row, int col);
+    Task<ErrorOr<GameState>> MakeMoveAsync(string gameId, string playerId, int row, int col);
     Task<ErrorOr<GameState>> ResignGameAsync(string gameId, string playerId);
     Task<ErrorOr<GameState>> JoinGameAsync(string gameId, string playerId);
 

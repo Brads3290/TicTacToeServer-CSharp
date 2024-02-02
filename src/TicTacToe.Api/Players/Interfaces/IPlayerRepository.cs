@@ -6,8 +6,9 @@ namespace TicTacToe.Api.Players.Interfaces;
 
 public interface IPlayerRepository {
 
-    Task<ErrorOr<Success>> SavePlayerAsync(Player game);
-    Task<ErrorOr<List<Player>>> ListPlayersAsync();
-    Task<ErrorOr<Deleted>> DeletePlayer(Player game);
+    Task<Player?> GetPlayerAsync(string playerId);
+    Task SavePlayerAsync(Player game);
+    Task<List<Player>> ListPlayersAsync();
+    Task DeletePlayer(Player game);
 
 }
