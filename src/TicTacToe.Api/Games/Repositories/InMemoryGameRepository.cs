@@ -1,5 +1,7 @@
-using TicTacToe.Api.Game.Interfaces;
-using TicTacToe.Api.Game.Models;
+using TicTacToe.Api.Games.Interfaces;
+using TicTacToe.Api.Games.Models;
+
+namespace TicTacToe.Api.Games.Repositories;
 
 public class InMemoryGameRepository : IGameRepository
 {

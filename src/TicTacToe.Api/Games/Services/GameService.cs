@@ -1,11 +1,11 @@
 using ErrorOr;
 using TicTacToe.Api.Common;
-using TicTacToe.Api.Game.Interfaces;
-using TicTacToe.Api.Game.Models;
+using TicTacToe.Api.Games.Interfaces;
+using TicTacToe.Api.Games.Models;
 using TicTacToe.Api.Players.Interfaces;
 using TicTacToe.Api.Players.Models;
 
-namespace TicTacToe.Api.Game.Services;
+namespace TicTacToe.Api.Games.Services;
 
 public class GameService : IGameService {
 
@@ -17,20 +17,20 @@ public class GameService : IGameService {
         _playerRepository = playerRepository;
     }
 
-    public async Task<ErrorOr<Models.Game>> StartGameAsync(string playerId) {
+    public async Task<ErrorOr<Game>> StartGameAsync(string playerId) {
         var player = await _playerRepository.GetPlayerAsync(playerId);
         if (player is null) {
             return GameServiceErrors.PlayerNotFound;
         }
 
-        var gameState = Models.Game.Empty();
+        var gameState = Game.Empty();
         gameState.Players.Add(GamePlayerInfo.From(player, Utilities.RandomSymbol()));
 
         await _gameRepository.SaveGameAsync(gameState);
         return gameState;
     }
 
-    public async Task<ErrorOr<List<Models.Game>>> ListOpenGamesAsync() {
+    public async Task<ErrorOr<List<Game>>> ListOpenGamesAsync() {
         var games = await _gameRepository.ListGameStatesAsync();
 
         return games
@@ -38,7 +38,7 @@ public class GameService : IGameService {
             .ToList();
     }
 
-    public async Task<ErrorOr<Models.Game>> MakeMoveAsync(string gameId, string playerId, int row, int col) {
+    public async Task<ErrorOr<Game>> MakeMoveAsync(string gameId, string playerId, int row, int col) {
         var player = await _playerRepository.GetPlayerAsync(playerId);
         if (player is null) {
             return GameServiceErrors.PlayerNotFound;
@@ -58,7 +58,7 @@ public class GameService : IGameService {
         return game;
     }
 
-    public async Task<ErrorOr<Models.Game>> GetGameStateAsync(string id) {
+    public async Task<ErrorOr<Game>> GetGameStateAsync(string id) {
         var game = await _gameRepository.GetGameAsync(id);
         if (game is null) {
             return GameServiceErrors.GameNotFound;
@@ -67,7 +67,7 @@ public class GameService : IGameService {
         return game;
     }
 
-    public async Task<ErrorOr<Models.Game>> ResignGameAsync(string gameId, string playerId) {
+    public async Task<ErrorOr<Game>> ResignGameAsync(string gameId, string playerId) {
         var player = await _playerRepository.GetPlayerAsync(playerId);
         if (player is null) {
             return GameServiceErrors.PlayerNotFound;
@@ -87,7 +87,7 @@ public class GameService : IGameService {
         return game;
     }
 
-    public async Task<ErrorOr<Models.Game>> JoinGameAsync(string gameId, string playerId) {
+    public async Task<ErrorOr<Game>> JoinGameAsync(string gameId, string playerId) {
         var player = await _playerRepository.GetPlayerAsync(playerId);
         if (player is null) {
             return GameServiceErrors.PlayerNotFound;
@@ -106,7 +106,7 @@ public class GameService : IGameService {
         return game;
     }
 
-    private static ErrorOr<Success> MakeMoveForPlayer(Player player, Models.Game game, int row, int col) {
+    private static ErrorOr<Success> MakeMoveForPlayer(Player player, Game game, int row, int col) {
         var result = game.PlayerMove(row, col, player.Id);
         if (result.IsError) {
             return result.Errors;
@@ -119,7 +119,7 @@ public class GameService : IGameService {
         return new Success();
     }
 
-    private static ErrorOr<Success> ResignPlayerFromGame(Player player, Models.Game game) {
+    private static ErrorOr<Success> ResignPlayerFromGame(Player player, Game game) {
         var gamePlayer = game.Players.FirstOrDefault(x => x.PlayerId == player.Id);
         if (gamePlayer is null) {
             return GameServiceErrors.PlayerNotInGame;

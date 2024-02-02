@@ -1,6 +1,6 @@
 using TicTacToe.Api.Players.Models;
 
-namespace TicTacToe.Api.Game.Models;
+namespace TicTacToe.Api.Games.Models;
 
 public class GamePlayerInfo {
 

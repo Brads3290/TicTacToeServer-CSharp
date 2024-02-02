@@ -1,7 +1,7 @@
 using TicTacToe.Api;
-using TicTacToe.Api.Game.Interfaces;
-using TicTacToe.Api.Game.Repositories;
-using TicTacToe.Api.Game.Services;
+using TicTacToe.Api.Games.Interfaces;
+using TicTacToe.Api.Games.Repositories;
+using TicTacToe.Api.Games.Services;
 using TicTacToe.Api.Players.Interfaces;
 using TicTacToe.Api.Players.Repositories;
 using TicTacToe.Api.Players.Services;

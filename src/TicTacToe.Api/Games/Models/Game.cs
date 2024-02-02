@@ -1,9 +1,9 @@
 using ErrorOr;
 using TicTacToe.Api.Common;
-using TicTacToe.Api.Game.Interfaces;
+using TicTacToe.Api.Games.Interfaces;
 using TicTacToe.Api.Players.Models;
 
-namespace TicTacToe.Api.Game.Models;
+namespace TicTacToe.Api.Games.Models;
 
 public class Game {
 

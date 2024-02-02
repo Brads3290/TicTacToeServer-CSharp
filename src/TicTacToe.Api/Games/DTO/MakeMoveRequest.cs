@@ -1,3 +1,5 @@
+namespace TicTacToe.Api.Games.DTO;
+
 public class MakeMoveRequest
 {
     public required string PlayerId { get; set; }

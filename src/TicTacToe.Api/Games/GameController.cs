@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using TicTacToe.Api.Game.Interfaces;
-using ErrorOr;
 using TicTacToe.Api.Common;
+using TicTacToe.Api.Games.DTO;
+using TicTacToe.Api.Games.Interfaces;
 
-
-namespace TicTacToe.Api.Game;
+namespace TicTacToe.Api.Games;
 
 [ApiController]
 [Route("games")]

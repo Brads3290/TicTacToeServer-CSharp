@@ -1,5 +1,7 @@
 using ErrorOr;
 
+namespace TicTacToe.Api.Common;
+
 class ErrorResponse
 {
     public ErrorDetails error { get; set; }
@@ -30,4 +32,3 @@ class ErrorDetails
         this.message = message;
     }
 }
-

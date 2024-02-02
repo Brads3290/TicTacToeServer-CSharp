@@ -1,4 +1,4 @@
-namespace TicTacToe.Api.Game.Models;
+namespace TicTacToe.Api.Games.Models;
 
 public enum GameResult {
 

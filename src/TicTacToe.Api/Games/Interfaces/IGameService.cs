@@ -1,15 +1,16 @@
 using ErrorOr;
+using TicTacToe.Api.Games.Models;
 
-namespace TicTacToe.Api.Game.Interfaces;
+namespace TicTacToe.Api.Games.Interfaces;
 
 public interface IGameService {
 
-    Task<ErrorOr<Models.Game>> StartGameAsync(string playerId);
-    Task<ErrorOr<List<Models.Game>>> ListOpenGamesAsync();
-    Task<ErrorOr<Models.Game>> GetGameStateAsync(string id);
-    Task<ErrorOr<Models.Game>> MakeMoveAsync(string gameId, string playerId, int row, int col);
-    Task<ErrorOr<Models.Game>> ResignGameAsync(string gameId, string playerId);
-    Task<ErrorOr<Models.Game>> JoinGameAsync(string gameId, string playerId);
+    Task<ErrorOr<Game>> StartGameAsync(string playerId);
+    Task<ErrorOr<List<Game>>> ListOpenGamesAsync();
+    Task<ErrorOr<Game>> GetGameStateAsync(string id);
+    Task<ErrorOr<Game>> MakeMoveAsync(string gameId, string playerId, int row, int col);
+    Task<ErrorOr<Game>> ResignGameAsync(string gameId, string playerId);
+    Task<ErrorOr<Game>> JoinGameAsync(string gameId, string playerId);
 
 }
 
