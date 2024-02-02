@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
 using ErrorOr;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using TicTacToe.Api.Common;
 using TicTacToe.Api.Game.Interfaces;
 using TicTacToe.Api.Game.Models;

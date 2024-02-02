@@ -1,6 +1,3 @@
-using ErrorOr;
-using TicTacToe.Api.Game.Models;
-
 namespace TicTacToe.Api.Game.Interfaces;
 
 public interface IGameRepository {

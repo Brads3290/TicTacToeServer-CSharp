@@ -1,5 +1,3 @@
-using ErrorOr;
-using TicTacToe.Api.Game.Models;
 using TicTacToe.Api.Players.Models;
 
 namespace TicTacToe.Api.Players.Interfaces;
