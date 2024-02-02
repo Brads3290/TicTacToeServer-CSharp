@@ -6,8 +6,8 @@ public interface IPlayerRepository {
 
     Task<Player?> GetPlayerAsync(string playerId);
     Task<Player?> GetPlayerByNicknameAsync(string nickname);
-    Task SavePlayerAsync(Player game);
+    Task SavePlayerAsync(Player player);
     Task<List<Player>> ListPlayersAsync();
-    Task DeletePlayer(Player game);
+    Task DeletePlayer(Player player);
 
 }
