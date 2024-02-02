@@ -17,6 +17,7 @@ public class GameController : TicTacToeControllerBase {
     }
 
     [Route("new")]
+    [HttpPost]
     public async Task<IActionResult> NewGame([FromBody] NewGameRequest request)
     {
         var result = await _gameService.StartGameAsync(request.PlayerId);
@@ -30,6 +31,7 @@ public class GameController : TicTacToeControllerBase {
     }
 
     [Route("open")]
+    [HttpGet]
     public async Task<IActionResult> OpenGames()
     {
         var result = await _gameService.ListOpenGamesAsync();
@@ -42,6 +44,7 @@ public class GameController : TicTacToeControllerBase {
     }
 
     [Route("{gameId}")]
+    [HttpGet]
     public async Task<IActionResult> GetGameState(string gameId)
     {
         var result = await _gameService.GetGameStateAsync(gameId);
@@ -54,6 +57,7 @@ public class GameController : TicTacToeControllerBase {
     }
     
     [Route("{gameId}/join")]
+    [HttpPost]
     public async Task<IActionResult> JoinGame(string gameId, [FromBody] JoinGameRequest request)
     {
         var result = await _gameService.JoinGameAsync(gameId, request.PlayerId);
@@ -67,6 +71,7 @@ public class GameController : TicTacToeControllerBase {
     }
 
     [Route("{gameId}/resign")]
+    [HttpPost]
     public async Task<IActionResult> ResignGame(string gameId, [FromBody] ResignGameRequest request)
     {
         var result = await _gameService.ResignGameAsync(gameId, request.PlayerId);
@@ -79,6 +84,7 @@ public class GameController : TicTacToeControllerBase {
     }
 
     [Route("{gameId}/move")]
+    [HttpPost]
     public async Task<IActionResult> MakeMove(string gameId, [FromBody] MakeMoveRequest request)
     {
         var result = await _gameService.MakeMoveAsync(gameId, request.PlayerId, request.Row, request.Column);
