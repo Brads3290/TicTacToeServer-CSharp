@@ -111,7 +111,9 @@ public class GameService : IGameService {
         if (result.IsError) {
             return result.Errors;
         }
-        
+
+        game.PlayerToMove = game.Players.Single(x => x.PlayerId != player.Id).PlayerId;
+
         // Check for win or draw
         game.UpdateState();
         return new Success();
