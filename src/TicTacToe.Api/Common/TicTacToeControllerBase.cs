@@ -14,6 +14,7 @@ public class TicTacToeControllerBase : ControllerBase {
             "GameService.NotFound" => NotFound(response),
             "GameService.GameFull" => BadRequest(response),
             "GameService.GameNotJoinable" => BadRequest(response),
+            "GameService.PlayerAlreadyInGame" => BadRequest(response),
             _ => StatusCode(500, err)
         };
     }
