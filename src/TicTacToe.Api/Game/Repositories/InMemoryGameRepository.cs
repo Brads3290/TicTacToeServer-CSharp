@@ -4,6 +4,7 @@ using TicTacToe.Api.Game.Models;
 public class InMemoryGameRepository : IGameRepository
 {
     private readonly Dictionary<string, Game> _games = new();
+    
     public Task DeleteGame(Game game)
     {
         _games.Remove(game.Id);
