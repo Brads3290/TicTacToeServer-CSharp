@@ -1,6 +1,6 @@
-
 using TicTacToe.Api;
-using TicTacToe.Api.Game.Interfaces;
+using TicTacToe.Api.Players;
+using TicTacToe.Api.Players.Interfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
