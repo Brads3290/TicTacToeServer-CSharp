@@ -6,7 +6,7 @@ public class JsonRepositoryBase {
 
     protected async Task SaveFile<T>(string filename, T store) {
         var json = JsonConvert.SerializeObject(store);
-        await File.WriteAllTextAsync("games.json", json);
+        await File.WriteAllTextAsync(filename, json);
     }
 
     protected async Task<T> LoadFile<T>(string filename) where T: new() {
