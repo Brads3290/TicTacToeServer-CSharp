@@ -1,30 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using TicTacToe.Api.Game.Interfaces;
 using ErrorOr;
+using TicTacToe.Api.Common;
 
 
 namespace TicTacToe.Api.Game;
 
 [ApiController]
 [Route("games")]
-public class GameController : ControllerBase {
+public class GameController : TicTacToeControllerBase {
 
     private readonly IGameService _gameService;
-
-    [NonAction]
-    public IActionResult ErrorResult(Error err)
-    {
-        var response = ErrorResponse.From(err);
-
-        return err.Code switch
-        {
-            "GameService.PlayerNotFound" => NotFound(response),
-            "GameService.NotFound" => NotFound(response),
-            "GameService.GameFull" => BadRequest(response),
-            "GameService.GameNotJoinable" => BadRequest(response),
-            _ => StatusCode(500, err)
-        };
-    }
 
     public GameController(IGameService gameService) {
         _gameService = gameService;
@@ -66,6 +52,7 @@ public class GameController : ControllerBase {
 
         return Ok(result.Value);
     }
+    
     [Route("{gameId}/join")]
     public async Task<IActionResult> JoinGame(string gameId, [FromBody] JoinGameRequest request)
     {
