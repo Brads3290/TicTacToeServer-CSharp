@@ -11,6 +11,7 @@ public class GameController : ControllerBase {
 
     private readonly IGameService _gameService;
 
+    [NonAction]
     public IActionResult ErrorResult(Error err)
     {
         var response = ErrorResponse.From(err);
