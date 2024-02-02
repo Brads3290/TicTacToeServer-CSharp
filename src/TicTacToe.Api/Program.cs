@@ -1,4 +1,9 @@
 using TicTacToe.Api;
+using TicTacToe.Api.Game.Interfaces;
+using TicTacToe.Api.Game.Services;
+using TicTacToe.Api.Players.Interfaces;
+using TicTacToe.Api.Players.Repositories;
+using TicTacToe.Api.Players.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IPlayerService, PlayerService>();
+builder.Services.AddSingleton<IPlayerRepository, InMemoryPlayerRepository>();
+builder.Services.AddSingleton<IGameRepository, InMemoryGameRepository>();
 
 var app = builder.Build();
 
