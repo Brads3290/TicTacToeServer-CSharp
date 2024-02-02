@@ -9,6 +9,7 @@ public interface IGameService {
     Task<ErrorOr<List<GameState>>> ListOpenGamesAsync();
     Task<ErrorOr<GameState>> GetGameStateAsync();
     Task<ErrorOr<GameState>> ResignGameAsync();
+    Task<ErrorOr<GameState>> JoinGameAsync();
 
 }
 
