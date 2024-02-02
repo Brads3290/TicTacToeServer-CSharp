@@ -5,7 +5,7 @@ using TicTacToe.Api.Players.Models;
 
 namespace TicTacToe.Api.Game.Models;
 
-public class GameState {
+public class Game {
 
     public const string SymbolX = "X";
     public const string SymbolO = "O";
@@ -18,7 +18,7 @@ public class GameState {
     public GameResult? Result { get; set; }
     public string? Winner { get; set; }
 
-    public GameState(
+    public Game(
         string id,
         string? playerToMove,
         string[][] board,
@@ -36,7 +36,7 @@ public class GameState {
         Winner = winner;
     }
 
-    public static GameState Empty() => new(
+    public static Game Empty() => new(
         id: Utilities.NewId(),
         playerToMove: null,
         board: new string[][] {

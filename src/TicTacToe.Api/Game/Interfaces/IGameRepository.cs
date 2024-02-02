@@ -5,9 +5,9 @@ namespace TicTacToe.Api.Game.Interfaces;
 
 public interface IGameRepository {
 
-    Task<GameState?> GetGameAsync(string gameId);
-    Task SaveGameAsync(GameState game);
-    Task<List<GameState>> ListGameStatesAsync();
-    Task DeleteGame(GameState game);
+    Task<Models.Game?> GetGameAsync(string gameId);
+    Task SaveGameAsync(Models.Game game);
+    Task<List<Models.Game>> ListGameStatesAsync();
+    Task DeleteGame(Models.Game game);
 
 }
