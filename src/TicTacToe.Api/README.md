@@ -2,12 +2,9 @@
 
 
 TODO:
- - [ ] Create models
- - [ ] Create interfaces
-
-
-Controllers - use interfaces
-
-Services/Logic - interfaces
-
-Persistence
+ - [ ] Update the API spec, few changes
+ - [ ] Validation
+   - Moves valid?
+   - Add validation attributes to controllers
+ - [ ] Testing
+ - [ ] EF Core database?
