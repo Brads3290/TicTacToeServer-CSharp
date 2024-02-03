@@ -4,7 +4,7 @@ using TicTacToe.Api.Players.Models;
 namespace TicTacToe.Api.Players.Interfaces;
 
 public interface IPlayerService {
-    
+
     Task<ErrorOr<Player>> CreatePlayerAsync(string nickname);
 
 }

@@ -10,7 +10,7 @@ public class Game {
     private static readonly Random Rand = new();
     public const string SymbolX = "X";
     public const string SymbolO = "O";
-    
+
     public string Id { get; set; }
     public string? PlayerToMove { get; set; }
     public string[][] Board { get; set; }
@@ -68,7 +68,7 @@ public class Game {
         } else {
             symbolToUse = SymbolX;
         }
-        
+
         var gamePlayer = GamePlayerInfo.From(player, symbolToUse);
         Players.Add(gamePlayer);
 
@@ -80,7 +80,7 @@ public class Game {
 
         return new Success();
     }
-    
+
     public void SetWinner(string playerId) {
         Result = GameResult.Win;
         Status = GameStatus.Finished;
@@ -117,7 +117,7 @@ public class Game {
                 return;
             }
         }
-        
+
         // If all spots are taken and no winner
         if (AllSpotsTaken()) {
             SetDraw();

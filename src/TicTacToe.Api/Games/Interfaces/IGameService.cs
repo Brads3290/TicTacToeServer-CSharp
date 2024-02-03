@@ -48,4 +48,4 @@ public static class GameServiceErrors {
         code: "GameService.InvalidMove",
         description: "The requested move is invalid");
 
-} 
+}

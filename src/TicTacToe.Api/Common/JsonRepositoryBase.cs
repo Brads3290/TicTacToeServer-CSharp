@@ -9,7 +9,7 @@ public class JsonRepositoryBase {
         await File.WriteAllTextAsync(filename, json);
     }
 
-    protected async Task<T> LoadFile<T>(string filename) where T: new() {
+    protected async Task<T> LoadFile<T>(string filename) where T : new() {
         if (!await Task.Run(() => File.Exists(filename))) {
             return new();
         }

@@ -13,7 +13,7 @@ public class JsonGameRepository : JsonRepositoryBase, IGameRepository {
         if (_games is null) {
             _games = await LoadFile<Dictionary<string, Game>>(Filename);
         }
-        
+
         _games.Remove(game.Id);
         await SaveFile(Filename, _games);
     }
@@ -22,10 +22,9 @@ public class JsonGameRepository : JsonRepositoryBase, IGameRepository {
         if (_games is null) {
             _games = await LoadFile<Dictionary<string, Game>>(Filename);
         }
-        
+
         _games.TryGetValue(gameId, out var game);
         return game;
-
     }
 
     public async Task<List<Game>> ListGameStatesAsync() {
@@ -40,9 +39,9 @@ public class JsonGameRepository : JsonRepositoryBase, IGameRepository {
         if (_games is null) {
             _games = await LoadFile<Dictionary<string, Game>>(Filename);
         }
-        
+
         _games[game.Id] = game;
         await SaveFile(Filename, _games);
     }
-    
+
 }

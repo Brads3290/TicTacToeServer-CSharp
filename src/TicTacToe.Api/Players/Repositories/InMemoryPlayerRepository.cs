@@ -6,7 +6,7 @@ namespace TicTacToe.Api.Players.Repositories;
 public class InMemoryPlayerRepository : IPlayerRepository {
 
     private readonly Dictionary<string, Player> _players = new();
-    
+
     public Task<Player?> GetPlayerAsync(string playerId) {
         _players.TryGetValue(playerId, out var player);
         return Task.FromResult(player);

@@ -7,7 +7,7 @@ namespace TicTacToe.Api.Players.Services;
 public class PlayerService : IPlayerService {
 
     private readonly IPlayerRepository _playerRepository;
-    
+
     public PlayerService(IPlayerRepository playerRepository) {
         _playerRepository = playerRepository;
     }
@@ -22,5 +22,5 @@ public class PlayerService : IPlayerService {
         await _playerRepository.SavePlayerAsync(player);
         return player;
     }
-    
+
 }

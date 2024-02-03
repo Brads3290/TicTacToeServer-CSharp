@@ -48,7 +48,7 @@ public class GameService : IGameService {
         if (game is null) {
             return GameServiceErrors.GameNotFound;
         }
-        
+
         var result = MakeMoveForPlayer(player, game, row, col);
         if (result.IsError) {
             return result.Errors;
@@ -77,7 +77,7 @@ public class GameService : IGameService {
         if (game is null) {
             return GameServiceErrors.GameNotFound;
         }
-        
+
         var result = ResignPlayerFromGame(player, game);
         if (result.IsError) {
             return result.Errors;

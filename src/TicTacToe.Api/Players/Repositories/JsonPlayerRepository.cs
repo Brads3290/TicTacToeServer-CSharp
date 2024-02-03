@@ -8,12 +8,12 @@ public class JsonPlayerRepository : JsonRepositoryBase, IPlayerRepository {
 
     private Dictionary<string, Player>? _players;
     private const string Filename = "players.json";
-    
+
     public async Task<Player?> GetPlayerAsync(string playerId) {
         if (_players is null) {
             _players = await LoadFile<Dictionary<string, Player>>(Filename);
         }
-        
+
         _players.TryGetValue(playerId, out var player);
         return player;
     }
@@ -22,7 +22,7 @@ public class JsonPlayerRepository : JsonRepositoryBase, IPlayerRepository {
         if (_players is null) {
             _players = await LoadFile<Dictionary<string, Player>>(Filename);
         }
-        
+
         var player = _players.Values.FirstOrDefault(x => x.Nickname == nickname);
         return player;
     }
@@ -31,7 +31,7 @@ public class JsonPlayerRepository : JsonRepositoryBase, IPlayerRepository {
         if (_players is null) {
             _players = await LoadFile<Dictionary<string, Player>>(Filename);
         }
-        
+
         _players[player.Id] = player;
 
         await SaveFile(Filename, _players);
@@ -41,7 +41,7 @@ public class JsonPlayerRepository : JsonRepositoryBase, IPlayerRepository {
         if (_players is null) {
             _players = await LoadFile<Dictionary<string, Player>>(Filename);
         }
-        
+
         return _players.Values.ToList();
     }
 
@@ -49,7 +49,7 @@ public class JsonPlayerRepository : JsonRepositoryBase, IPlayerRepository {
         if (_players is null) {
             _players = await LoadFile<Dictionary<string, Player>>(Filename);
         }
-        
+
         _players.Remove(player.Id);
 
         await SaveFile(Filename, _players);

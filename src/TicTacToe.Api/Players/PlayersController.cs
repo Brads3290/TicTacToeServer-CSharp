@@ -10,7 +10,7 @@ namespace TicTacToe.Api.Players;
 public class PlayersController : TicTacToeControllerBase {
 
     private readonly IPlayerService _playerService;
-    
+
     public PlayersController(IPlayerService playerService) {
         _playerService = playerService;
     }
@@ -30,5 +30,5 @@ public class PlayersController : TicTacToeControllerBase {
             Nickname = player.Nickname,
         });
     }
-    
+
 }

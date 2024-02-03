@@ -2,12 +2,11 @@ using ErrorOr;
 
 namespace TicTacToe.Api.Common;
 
-class ErrorResponse
-{
+class ErrorResponse {
+
     public ErrorDetails error { get; set; }
 
-    public ErrorResponse(string code, string message)
-    {
+    public ErrorResponse(string code, string message) {
         this.error = new ErrorDetails(code, message);
         // This is one way to do it if you don't like to have YET ANOTHER CONSTRUCTOR.
         // {
@@ -16,19 +15,20 @@ class ErrorResponse
         // };
     }
 
-    public static ErrorResponse From(Error err)
-    {
+    public static ErrorResponse From(Error err) {
         return new ErrorResponse(err.Code, err.Description);
     }
+
 }
 
-class ErrorDetails
-{
+class ErrorDetails {
+
     public string code { get; set; }
     public string message { get; set; }
-    public ErrorDetails(string code, string message)
-    {
+
+    public ErrorDetails(string code, string message) {
         this.code = code;
         this.message = message;
     }
+
 }
